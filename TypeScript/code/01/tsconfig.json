@@ -1,0 +1,57 @@
+{
+  "compilerOptions": {
+    // ========== 1. 编译输出目录（代码分类整洁） ==========
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    // ========== 2. 运行环境适配 Node.js ==========
+    // nodenext：Node 标准 ES Module / CommonJS 自动识别
+    "module": "nodenext",
+    // target：编译输出 JS 版本，node 高版本直接 esnext
+    "target": "ES2020",
+    // 内置语法库，只保留 ES 标准，不需要浏览器 DOM API
+    "lib": ["ES2020"],
+    // 加载 node 内置 API 类型（必须安装 @types/node）
+    "types": ["node"],
+
+    // ========== 3. 初学关闭多余文件产物 ==========
+    "sourceMap": false,
+    "declaration": false,
+    "declarationMap": false,
+
+    // ========== 4. 核心：严格类型检查（学习必开！） ==========
+    "strict": true,
+    // 索引签名严格校验，避免数组/对象取值 undefined 坑
+    "noUncheckedIndexedAccess": true,
+    // 可选属性严格区分 undefined 和 空值
+    "exactOptionalPropertyTypes": true,
+
+    // ========== 5. 代码规范校验，杜绝劣质代码 ==========
+    // 函数必须有显式 return
+    "noImplicitReturns": true,
+    // 未使用局部变量直接报错，及时清理冗余代码
+    "noUnusedLocals": true,
+    // 未使用函数参数报错
+    "noUnusedParameters": true,
+    // switch 不加 break 直接报错，防止穿透bug
+    "noFallthroughCasesInSwitch": true,
+
+    // ========== 6. 模块化、编译优化配置 ==========
+    // 导入导出语法严格，不能混用默认导出
+    "verbatimModuleSyntax": true,
+    // 每个文件可单独编译，兼容性更好
+    "isolatedModules": true,
+    // 跳过第三方类型库检查，加快编译速度
+    "skipLibCheck": true,
+    // 自动识别文件模块类型
+    "moduleDetection": "force",
+    // 无副作用导入报错，避免隐形执行代码
+    "noUncheckedSideEffectImports": true
+  },
+
+  // ========== 编译范围控制 ==========
+  // 编译当前目录所有 ts/tsx 文件
+  "include": ["./src/*.ts"],
+  // 排除 node_modules、编译输出文件夹
+  "exclude": ["node_modules", "dist"]
+}
