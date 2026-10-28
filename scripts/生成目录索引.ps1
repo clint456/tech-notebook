@@ -19,7 +19,7 @@ $ErrorActionPreference = 'Stop'
 $root = (Resolve-Path -LiteralPath $Root).Path.TrimEnd('\')
 # 路径中任意一级目录命中这些名字就跳过（例如 TypeScript/code/01/node_modules）
 $excludeAny = @('node_modules', '.git', '.obsidian', '资料', '_模板', 'scripts', 'dist', 'build', 'target', 'bin', 'obj', 'out')
-$rootDocs = @('README.md', '文档规范.md', $OutputName)
+$rootDocs = @('README.md', '文档规范.md', '索引.md', $OutputName)
 
 function Get-UrlPath([string]$relativePath) {
     $p = $relativePath -replace '\\', '/'
@@ -98,8 +98,12 @@ $todoCount = ($notes | Where-Object { $_.Todo }).Count
 $lines = New-Object System.Collections.ArrayList
 [void]$lines.Add('# 笔记索引')
 [void]$lines.Add('')
-[void]$lines.Add('> 本文件由 `scripts/生成目录索引.ps1` 自动生成，请勿手动编辑。')
+[void]$lines.Add('> 本文件由 `scripts/生成目录索引.sh`（Linux / macOS）与 `scripts/生成目录索引.ps1`（Windows）自动生成，请勿手动编辑。')
 [void]$lines.Add('> 新增、重命名或删除笔记后重新运行：')
+[void]$lines.Add('>')
+[void]$lines.Add('> ```bash')
+[void]$lines.Add('> ./scripts/生成目录索引.sh')
+[void]$lines.Add('> ```')
 [void]$lines.Add('>')
 [void]$lines.Add('> ```powershell')
 [void]$lines.Add('> powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\生成目录索引.ps1')

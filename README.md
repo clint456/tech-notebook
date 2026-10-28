@@ -6,6 +6,7 @@
 - 写作与目录规范：[文档规范.md](./文档规范.md)
 - 笔记模板：[_模板](./_模板)
 - 本地大文件：[资料](./资料/README.md)（不入库）
+- 索引生成脚本：[scripts](./scripts/README.md)（Linux/macOS 用 .sh，Windows 用 .ps1）
 
 ## 目录结构
 
@@ -44,7 +45,7 @@ tech-notebook/
 │
 ├── 资料/                     # PDF、镜像等大文件（.gitignore 忽略，仅保留说明）
 ├── _模板/                    # 笔记 / 实验记录 / 排错记录模板
-└── scripts/                  # 索引生成脚本
+└── scripts/                  # 索引生成脚本（.sh：Linux/macOS，.ps1：Windows）
 ```
 
 ## 笔记分布
@@ -78,11 +79,17 @@ tech-notebook/
 
 1. 判断归属：先看 `notes/`（纯知识），再看 `interview/`、`career/`、`misc/`；不确定就放 `00-inbox/`。
 2. 复制 [_模板/笔记模板.md](./_模板/笔记模板.md)，按「背景 → 结论 → 正文 → 参考」填写。
-3. 更新索引：
+3. 更新索引（两个脚本输出一致，按系统选一个）：
+
+   ```bash
+   ./scripts/生成目录索引.sh
+   ```
 
    ```powershell
    powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\生成目录索引.ps1
    ```
+
+   参数与排序规则见 [scripts/README.md](./scripts/README.md)。
 
 4. 提交：
 
