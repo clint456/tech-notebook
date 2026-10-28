@@ -60,9 +60,11 @@ foreach ($file in Get-ChildItem -LiteralPath $root -Recurse -File -Filter *.md) 
     $title = [System.IO.Path]::GetFileNameWithoutExtension($file.Name)
     $firstLine = Get-Content -LiteralPath $file.FullName -TotalCount 1 -Encoding UTF8 -ErrorAction SilentlyContinue
     if ($firstLine -and $firstLine -match '^\s*#\s+(.+?)\s*$') {
-        $candidate = Get-CleanTitle $Matches[1]
-        # 标题里带链接残留、或以 "1."/"1、" 开头时，用文件名更清楚
-        if ($candidate -and $candidate -notmatch 'https?:' -and $candidate -notmatch '^\d+[\.、]') {
+        $rawHeading = $Matches[1]
+        $candidate = Get-CleanTitle $rawHeading
+        # 只有比文件名信息更丰富时才用首行标题：排除链接残留、编号开头
+        if ($candidate -and $rawHeading -notmatch 'https?://|\]\(' -and $candidate -notmatch '^\d+[\s\.、]' -and
+            $candidate.Length -gt ([System.IO.Path]::GetFileNameWithoutExtension($file.Name)).Length) {
             $title = $candidate
         }
     }
