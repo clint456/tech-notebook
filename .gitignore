@@ -1,0 +1,57 @@
+# ---- 依赖 / 构建产物 ----
+node_modules/
+dist/
+build/
+target/
+bin/
+obj/
+out/
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.so
+*.dll
+*.lib
+*.class
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# ---- 本地资料（大文件不入库，见 资料/README.md）----
+/资料/*
+!/资料/README.md
+*.pdf
+*.PDF
+*.zip
+*.7z
+*.rar
+*.iso
+*.img
+*.tar
+*.tar.gz
+
+# ---- 编辑器 / 系统 ----
+.vscode/
+.idea/
+.obsidian/workspace*
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- 密钥 / 凭据 ----
+.env
+.env.*
+*.key
+*.pem
+*APIKEY*
+*api_key*
+
+# ---- 日志 / 临时 ----
+*.log
+*.tmp
+*.bak
+~$*
